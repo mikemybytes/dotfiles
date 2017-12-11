@@ -1,0 +1,38 @@
+[user]
+	name = Michał Kowalski
+	email = mk@foo.bar
+[color]
+	ui = auto
+[alias]
+	st = status
+	co = checkout
+	br = branch
+  ci = commit
+  lasttag = describe --tags --abbrev=0
+  d = diff --word-diff
+  dc = diff --cached
+  # Pretty log
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  # Fetch & Checkout
+  fnc = "!f(){ git fetch && git checkout $1 ; }; f"
+  # Change branch (keeping local changes)
+  chbr = "!f() { git add . && git stash && git fnc $1 && git stash pop ; }; f"
+  filelog = log --all --full-history -- **/
+  delete-branch = push origin --delete 
+[core]
+	editor = vim
+	autocrlf = input
+[diff]
+	mnemonicprefix = true
+[push]
+	default = simple
+[merge]
+	tool = kdiff3
+[rerere]
+	enabled = true
+[rebase]
+	autosquash = true
+[commit]
+	verbose = true
+[mergetool]
+	keepBackup = false
