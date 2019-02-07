@@ -16,7 +16,7 @@
 	# Fetch & Checkout
 	fnc = "!f(){ git fetch && git checkout $1 ; }; f"
 	# Change branch (keeping local changes)
-	chbr = "!f() { git add . && git stash && git fnc $1 && git stash pop ; }; f"
+	chbr = "!f() { stash_name=\"$(date +%s%N)-auto-chbr\" ; git add . && git stash save \"${stash_name}\" && git fnc $1 && (git stash list -n1 | grep -q \"${stash_name}\") && git stash pop -q || : ; }; f"
 	filelog = log --all --full-history -- **/
 	delete-branch = push origin --delete 
 [core]
